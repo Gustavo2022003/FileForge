@@ -1,10 +1,11 @@
 # Constantes
 $HelpMessage = @"
-Usage: script.ps1 <target_directory> <project_name> [-puv] [-mvc] [-help]
+Usage: script.ps1 <target_directory> <project_name> [-puv] [-mvc] [-py] [-help]
 
 Options:
     -puv    Create public utils and views structure
     -mvc    Create MVC project structure
+    -py     Create Python project structure
     -help   Show this help message
 "@
 
@@ -13,13 +14,14 @@ function ShowHelp {
     Write-Host $HelpMessage
 }
 
-# Função para criar estrutura de diretórios e arquivos
+# Para criar Estruturas de Diretórios
 function CreateStructure {
     param (
         [string]$Directory,
         [string]$ProjectName,
         [bool]$IsPublicUtilsViews = $false,
-        [bool]$IsMVC = $false
+        [bool]$IsMVC = $false,
+        [bool]$isPy = $false
     )
 
     # Função interna para criar diretórios
@@ -41,24 +43,42 @@ function CreateStructure {
     }
 
     # Estrutura base
-    $directories = @("public", "utils", "views")
-    $publicDirectories = @("icons", "imgs", "scripts", "partials")
-    $files = @(".env", ".gitignore", "index.js")
+    $directories = @()
+    $files = @()
 
-    # Estrutura adicional para MVC
+    # Adiciona estrutura para projetos com opção -puv
+    if ($IsPublicUtilsViews) {
+        $directories += "public", "public\icons", "public\imgs", "public\scripts", "public\scripts\utils", "views", "views\partials"
+        $files += ".env", ".gitignore", "index.js", "utils.js", "index.ejs"
+    }
+
+    # Adiciona estrutura para projetos com opção -mvc
     if ($IsMVC) {
         $directories += "controllers", "models", "routes"
-        $files += "mainRoute.js", "mainController.js", "mainModel.js"
+        $files += ".env", ".gitignore", "index.js", "mainRoute.js", "mainController.js", "mainModel.js"
+    }
+
+    # Adiciona estrutura para projetos Python
+    if ($isPy) {
+        $pyFiles = @("README.md", "requirements.txt", "setup.py", ".gitignore")
+        $pyDirectories = @("docs", "tests", "src", "data")
+        $pySrcFiles = @("__init__.py", "module1.py", "module2.py")
+        
+        $directories += $pyDirectories
+        $files += $pyFiles
+        CreateDirectories -BaseDirectory (Join-Path -Path $Directory -ChildPath $ProjectName) -Directories $pyDirectories
+        CreateFiles -BaseDirectory (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "src") -Files $pySrcFiles
     }
 
     # Criação da estrutura
     CreateDirectories -BaseDirectory (Join-Path -Path $Directory -ChildPath $ProjectName) -Directories $directories
-    CreateDirectories -BaseDirectory (Join-Path -Path $Directory -ChildPath "$ProjectName\public") -Directories $publicDirectories
     CreateFiles -BaseDirectory (Join-Path -Path $Directory -ChildPath $ProjectName) -Files $files
 
-    # Criação de arquivos específicos
-    New-Item -ItemType File -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath "$ProjectName\public\scripts") -ChildPath "script.js") -ErrorAction SilentlyContinue | Out-Null
-    New-Item -ItemType File -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "public\style.css") -ErrorAction SilentlyContinue | Out-Null
+    # Mover util.js para public/scripts/utils
+    Move-Item -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "utils.js") -Destination (Join-Path -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "public") -ChildPath "scripts\utils\utils.js")
+
+    # Mover index.ejs para views
+    Move-Item -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "index.ejs") -Destination (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "views")
 
     Write-Host "The file structure has been successfully created at $Directory\$ProjectName." -ForegroundColor Green
 }
@@ -67,6 +87,7 @@ $targetDirectory = $args[0]
 $projectName = $args[1]
 $isPublicUtilsViews = $args -contains "-puv"
 $isMVC = $args -contains "-mvc"
+$isPy = $args -contains "-py"
 
 # Verificação de argumentos
 if ($args[2] -eq $null) {
@@ -77,9 +98,9 @@ if ($args[2] -eq $null) {
 
 # Verificação da opção escolhida
 if ($isPublicUtilsViews -and $isMVC) {
-    Write-Host "Please choose either -puv or -mvc, not both." -ForegroundColor Red
+    Write-Host "Please choose either -puv, -mvc or -py, not all." -ForegroundColor Red
     exit 1
 }
 
 # Criação da estrutura de diretórios e arquivos
-CreateStructure -Directory $targetDirectory -ProjectName $projectName -IsPublicUtilsViews $isPublicUtilsViews -IsMVC $isMVC
+CreateStructure -Directory $targetDirectory -ProjectName $projectName -IsPublicUtilsViews $isPublicUtilsViews -IsMVC $isMVC -IsPy $isPy
