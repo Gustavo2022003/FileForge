@@ -63,17 +63,17 @@ function CreateStructure {
     Write-Host "The file structure has been successfully created at $Directory\$ProjectName." -ForegroundColor Green
 }
 
+$targetDirectory = $args[0]
+$projectName = $args[1]
+$isPublicUtilsViews = $args -contains "-puv"
+$isMVC = $args -contains "-mvc"
+
 # Verificação de argumentos
 if ($args[2] -eq $null) {
     Write-Host "Please provide both target directory and project name." -ForegroundColor Red
     ShowHelp
     exit 1
 }
-
-$targetDirectory = $args[0]
-$projectName = $args[1]
-$isPublicUtilsViews = $args -contains "-puv"
-$isMVC = $args -contains "-mvc"
 
 # Verificação da opção escolhida
 if ($isPublicUtilsViews -and $isMVC) {
