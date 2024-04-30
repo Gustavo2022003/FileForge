@@ -8,8 +8,8 @@ Options:
     -py     Create Python project structure
     -help   Show this help message
 
-    For more information visit: https://github.com/Gustavo2022003/FileForge
-    `n
+For more information visit: https://github.com/Gustavo2022003/FileForge
+`n
 "@
 
 # Função para exibir mensagem de ajuda
@@ -24,8 +24,21 @@ function CreateStructure {
         [string]$ProjectName,
         [bool]$IsPublicUtilsViews = $false,
         [bool]$IsMVC = $false,
-        [bool]$IsPy = $false
+        [bool]$IsPy = $false,
+        [bool]$IsHelp = $false
     )
+
+    # Verificação de ajuda
+    if ($IsHelp) {
+        ShowHelp
+        exit 0
+    }
+
+    # Verificação de diretório
+    if (-not (Test-Path -Path $Directory)) {
+        Write-Host "The target directory does not exist.`n" -ForegroundColor Red
+        exit 1
+    }
 
     # Função interna para criar diretórios
     function CreateDirectories {
@@ -98,24 +111,21 @@ $projectName = $args[1]
 $isPublicUtilsViews = $args -contains "-puv"
 $isMVC = $args -contains "-mvc"
 $isPy = $args -contains "-py"
+$isHelp = $args -contains "-help"
 
-if ($args -contains "-help") {
-    ShowHelp
-    exit 0
-}
-
-# Verificação de argumentos
-if ($args[2] -eq $null -or -not ($args[1] -is [String])) {
-    Write-Host "Please provide both target directory and project name.`n" -ForegroundColor Red
+# Verifica se pelo menos um argumento válido foi passado
+if (-not ($isMVC -or $isPublicUtilsViews -or $isPy -or $isHelp)) {
+    $invalid_arg = $args[2]
+    Write-Host "`nYou must specify at least one of the following options: -puv, -mvc or -py.`n" -ForegroundColor Red
     ShowHelp
     exit 1
 }
 
-# Verificação da opção escolhida
-if ($isPublicUtilsViews -and $isMVC) {
-    Write-Host "Please choose either -puv, -mvc or -py, not all.`n" -ForegroundColor Red
+if($args.Count -ge 4 -and $isHelp -eq $false) {
+    Write-Host "`nInvalid number of arguments.`n" -ForegroundColor Red
+    ShowHelp
     exit 1
 }
 
 # Criação da estrutura de diretórios e arquivos
-CreateStructure -Directory $targetDirectory -ProjectName $projectName -IsPublicUtilsViews $isPublicUtilsViews -IsMVC $isMVC -IsPy $isPy
+CreateStructure -Directory $targetDirectory -ProjectName $projectName -IsPublicUtilsViews $isPublicUtilsViews -IsMVC $isMVC -IsPy $isPy -IsHelp $isHelp
