@@ -7,6 +7,9 @@ Options:
     -mvc    Create MVC project structure
     -py     Create Python project structure
     -help   Show this help message
+
+    For more information visit: https://github.com/Gustavo2022003/FileForge
+    `n
 "@
 
 # Função para exibir mensagem de ajuda
@@ -21,7 +24,7 @@ function CreateStructure {
         [string]$ProjectName,
         [bool]$IsPublicUtilsViews = $false,
         [bool]$IsMVC = $false,
-        [bool]$isPy = $false
+        [bool]$IsPy = $false
     )
 
     # Função interna para criar diretórios
@@ -42,28 +45,32 @@ function CreateStructure {
         }
     }
 
+    $folders = Get-ChildItem -Path $Directory -Directory | Where-Object { $_.Name -eq $ProjectName }
+
+    if ($folders.Count -gt 0) {
+        Write-Host "The project with name ""$ProjectName"" already exists in the target directory.`n" -ForegroundColor Red
+        exit 1
+    }
+
     # Estrutura base
     $directories = @()
     $files = @()
 
-    # Adiciona estrutura para projetos com opção -puv
     if ($IsPublicUtilsViews) {
         $directories += "public", "public\icons", "public\imgs", "public\scripts", "public\scripts\utils", "views", "views\partials"
         $files += ".env", ".gitignore", "index.js", "utils.js", "index.ejs"
     }
 
-    # Adiciona estrutura para projetos com opção -mvc
     if ($IsMVC) {
         $directories += "controllers", "models", "routes"
-        $files += ".env", ".gitignore", "index.js", "mainRoute.js", "mainController.js", "mainModel.js"
+        $files += ".env", ".gitignore", "index.js", "routes\mainRoute.js", "controllers\mainController.js", "models\mainModel.js"
     }
 
-    # Adiciona estrutura para projetos Python
-    if ($isPy) {
+    if ($IsPy) {
         $pyFiles = @("README.md", "requirements.txt", "setup.py", ".gitignore")
         $pyDirectories = @("docs", "tests", "src", "data")
         $pySrcFiles = @("__init__.py", "module1.py", "module2.py")
-        
+
         $directories += $pyDirectories
         $files += $pyFiles
         CreateDirectories -BaseDirectory (Join-Path -Path $Directory -ChildPath $ProjectName) -Directories $pyDirectories
@@ -75,13 +82,16 @@ function CreateStructure {
     CreateFiles -BaseDirectory (Join-Path -Path $Directory -ChildPath $ProjectName) -Files $files
 
     # Mover util.js para public/scripts/utils
-    Move-Item -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "utils.js") -Destination (Join-Path -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "public") -ChildPath "scripts\utils\utils.js")
+    if ($IsPublicUtilsViews) {
+        Move-Item -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "utils.js") -Destination (Join-Path -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "public") -ChildPath "scripts\utils\utils.js")
 
-    # Mover index.ejs para views
-    Move-Item -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "index.ejs") -Destination (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "views")
+        # Mover index.ejs para views
+        Move-Item -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "index.ejs") -Destination (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "views")
+    }
 
-    Write-Host "The file structure has been successfully created at $Directory\$ProjectName." -ForegroundColor Green
+    Write-Host "The file structure has been successfully created at $Directory\$ProjectName.`n" -ForegroundColor Green
 }
+
 
 $targetDirectory = $args[0]
 $projectName = $args[1]
@@ -89,16 +99,21 @@ $isPublicUtilsViews = $args -contains "-puv"
 $isMVC = $args -contains "-mvc"
 $isPy = $args -contains "-py"
 
+if ($args -contains "-help") {
+    ShowHelp
+    exit 0
+}
+
 # Verificação de argumentos
-if ($args[2] -eq $null) {
-    Write-Host "Please provide both target directory and project name." -ForegroundColor Red
+if ($args[2] -eq $null -or -not ($args[1] -is [String])) {
+    Write-Host "Please provide both target directory and project name.`n" -ForegroundColor Red
     ShowHelp
     exit 1
 }
 
 # Verificação da opção escolhida
 if ($isPublicUtilsViews -and $isMVC) {
-    Write-Host "Please choose either -puv, -mvc or -py, not all." -ForegroundColor Red
+    Write-Host "Please choose either -puv, -mvc or -py, not all.`n" -ForegroundColor Red
     exit 1
 }
 
