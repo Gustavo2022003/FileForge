@@ -1,7 +1,3 @@
-Claro, vamos adicionar mais informações e tornar a documentação mais interativa e amigável:
-
----
-
 # FileForge 🛠️
 
 FileForge é uma ferramenta de linha de comando para criar estruturas de diretórios e arquivos para diferentes tipos de projetos de desenvolvimento de software.
