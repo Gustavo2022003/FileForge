@@ -1,22 +1,22 @@
 # FileForge 🛠️
 
-O FileForge é uma ferramenta de linha de comando projetada para simplificar e agilizar o processo de criação de estruturas de diretórios e arquivos para projetos de desenvolvimento de software. Com este programa, os desenvolvedores podem facilmente gerar estruturas de pastas e arquivos para uma variedade de tipos de projetos, incluindo aqueles que seguem padrões específicos, como arquitetura MVC (Model-View-Controller) ou projetos Python. Oferecendo suporte amplo e feedback visual claro, o FileForge é uma solução conveniente para configurar rapidamente a base de um projeto, permitindo que os desenvolvedores se concentrem mais no desenvolvimento de software e menos na organização inicial do projeto.
+FileForge is a command-line tool designed to simplify and expedite the process of creating directory and file structures for software development projects. With this program, developers can easily generate folder and file structures for a variety of project types, including those that follow specific patterns such as Model-View-Controller (MVC) architecture or Python projects. Offering broad support and clear visual feedback, FileForge is a convenient solution for quickly setting up the foundation of a project, allowing developers to focus more on software development and less on the initial organization of the project.
 
-## Sumário
+## Summary
 
-- [Instalação](#instalação)
-- [Como Usar](#como-usar)
-- [Tipos de estruturas](#tipos-de-estruturas)
+- [Installation](#installation)
+- [How to Use](#how-to-use)
+- [Types of Structures](#types-of-structures)
 - [Features](#features)
 - [Troubleshooting](#troubleshooting)
-- [Contribua e Reporte Problemas](#contribua-e-reporte-problemas)
-- [Para mais informações](#para-mais-informações)
+- [Contribute and Report Issues](#contribute-and-report-issues)
+- [For More Information](#for-more-information)
 
-## Instalação
+## Installation
 
 🚀
 
-### 1. Faça o [download.zip](https://github.com/Gustavo2022003/FileForge/archive/refs/heads/FF-main.zip) ou clone este repositório para o seu computador.
+### 1. Download the [download.zip](https://github.com/Gustavo2022003/FileForge/archive/refs/heads/FF-main.zip) file or clone this repository to your computer.
 
 **GitHub CLI:**
 
@@ -34,181 +34,168 @@ git clone https://github.com/Gustavo2022003/FileForge.git
 git@github.com:Gustavo2022003/FileForge.git
 ```
 
-### 2. Certifique-se de ter o PowerShell instalado no seu sistema:
+### 2. Make sure you have PowerShell installed on your system:
 
-Para verificar se o PowerShell está instalado no seu sistema Windows, você pode seguir estas etapas:
+To check if PowerShell is installed on your Windows system, you can follow these steps:
 
-1. **Abrir o PowerShell**: Pressione as teclas `Win + R` para abrir a caixa de diálogo "Executar", digite "powershell" e pressione Enter. Se o PowerShell estiver instalado, uma janela do PowerShell será aberta.
+1. **Open PowerShell**: Press `Win + R` keys to open the "Run" dialog, type "powershell", and press Enter. If PowerShell is installed, a PowerShell window will open.
 
-2. **Verificar a versão**: No PowerShell, você pode digitar o seguinte comando e pressionar Enter:
+2. **Check the version**: In PowerShell, you can type the following command and press Enter:
    ```
    $PSVersionTable.PSVersion
    ```
-   Isso exibirá informações sobre a versão do PowerShell instalada no seu sistema.
+   This will display information about the version of PowerShell installed on your system.
 
-3. **Verificar a presença do executável**: Você também pode verificar se o executável do PowerShell está presente no seu sistema. O caminho padrão para o executável do PowerShell é `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`. Você pode navegar até este diretório no Explorador de Arquivos e verificar se o arquivo `powershell.exe` está presente.
+3. **Check for the presence of the executable**: You can also check if the PowerShell executable is present on your system. The default path to the PowerShell executable is `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`. You can navigate to this directory in File Explorer and check if the `powershell.exe` file is present.
 
-Se o PowerShell estiver instalado, você poderá ver sua versão e iniciar o ambiente do PowerShell sem problemas. Se não estiver instalado, você pode instalar a versão mais recente diretamente do site da Microsoft ou através do Windows Store, dependendo da sua versão do Windows.
+If PowerShell is installed, you should be able to see its version and start the PowerShell environment without any issues. If it is not installed, you can install the latest version directly from the Microsoft website or through the Windows Store, depending on your version of Windows.
 
-### 3. Navegue até o diretório onde você baixou/clonou o repositório.
+### 3. Navigate to the directory where you downloaded/cloned the repository.
 
 
-### 4. Execute o script `FF.ps1` usando o PowerShell.
+### 4. Run the `FF.ps1` script using PowerShell.
 
 ---
 
-Para melhorar a seção "Como Usar", podemos adicionar mais detalhes sobre cada uma das opções disponíveis e fornecer exemplos de uso mais claros. Aqui está uma versão aprimorada:
+To improve the "How to Use" section, we can add more details about each of the available options and provide clearer usage examples. Here's an enhanced version:
 
-## Como Usar
+## How to Use
 
-📝 Para utilizar o projeto, execute o script `FF.ps1` no PowerShell com os seguintes parâmetros:
-
-```
-.\FF.ps1 <diretório_de_destino> <nome_do_projeto> [-puv] [-mvc] [-py] [-help]
-```
-
-Você também pode especificar as opções como uma string delimitada por aspas:
+📝 To use the project, execute the `FF.ps1` script in PowerShell with the following parameters:
 
 ```
-.\FF.ps1 <diretório_de_destino> <nome_do_projeto> ["-puv"] ["-mvc"] ["-py"] ["-help"]
+.\FF.ps1 <target_directory> <project_name> [-puv] [-mvc] [-py] [-help]
+```
+
+You can also specify the options as a string delimited by quotes:
+
+```
+.\FF.ps1 <target_directory> <project_name> ["-puv"] ["-mvc"] ["-py"] ["-help"]
 ```
 
 <img src="public/src/simple/GIF_flagAsString.gif">
 
-### Opções
+### Options
 
-⚙️ Aqui estão as opções disponíveis:
+⚙️ Here are the available options:
 
-| Opção  | Descrição                                                                                                            |
-|--------|----------------------------------------------------------------------------------------------------------------------|
-| `-puv` | Cria a estrutura de diretórios e arquivos para um projeto com a estrutura de diretórios públicos, utils e views.     |
-| `-mvc` | Cria a estrutura de diretórios e arquivos para um projeto seguindo o padrão de arquitetura MVC (Model-View-Controller). |
-| `-py`  | Cria a estrutura de diretórios e arquivos para um projeto Python.                                                     |
-| `-help`| Exibe a mensagem de ajuda com informações sobre como usar o script.                                                   |
+| Option  | Description                                                                                                           |
+|--------|-----------------------------------------------------------------------------------------------------------------------|
+| `-puv` | Creates the directory and file structure for a project with public, utils, and views directory structure.             |
+| `-mvc` | Creates the directory and file structure for a project following the Model-View-Controller (MVC) architecture pattern. |
+| `-py`  | Creates the directory and file structure for a Python project.                                                         |
+| `-help`| Displays the help message with information on how to use the script.                                                    |
 
-Certifique-se de escolher a opção adequada para o tipo de projeto que você está iniciando. Por exemplo:
+Make sure to choose the appropriate option for the type of project you are starting. For example:
 
 ```
-.\FF.ps1 C:\Projetos\MeuProjeto meu_projeto -mvc
+.\FF.ps1 C:\Projects\MyProject my_project -mvc
 ```
 
-Este comando criará a estrutura de diretórios e arquivos para um projeto MVC chamado "meu_projeto" no diretório "C:\Projetos\MeuProjeto".
+This command will create the directory and file structure for an MVC project named "my_project" in the directory "C:\Projects\MyProject".
 
-## Tipos de estruturas
+## Types of Structures
 
-O FileForge oferece suporte a diferentes tipos de estruturas de diretórios e arquivos, incluindo:
+FileForge supports different types of directory and file structures, including:
 
-- **PUV**: Estrutura com diretórios: public, utils e views.
-- **MVC**: Estrutura seguindo o padrão de arquitetura MVC (Model-View-Controller).
-- **Python**: Estrutura para projetos Python.
+- **PUV**: Structure with directories: public, utils, and views.
+- **MVC**: Structure following the Model-View-Controller (MVC) architecture pattern.
+- **Python**: Structure for Python projects.
 
-Claro, aqui está uma versão aprimorada da seção "Features":
+Of course, here's an enhanced version of the "Features" section:
 
 ## Features
 
-✨ O FileForge oferece diversas funcionalidades que tornam a criação de estruturas de diretórios e arquivos mais eficiente e intuitiva:
+✨ FileForge offers several features that make the creation of directory and file structures more efficient and intuitive:
 
-- **Rápido e Fácil**: Facilita a criação rápida e fácil de estruturas de diretórios e arquivos para uma ampla variedade de tipos de projetos, reduzindo significativamente o tempo gasto na configuração inicial do projeto.
+- **Fast and Easy**: Facilitates quick and easy creation of directory and file structures for a wide variety of project types, significantly reducing the time spent on initial project setup.
 
-- **Suporte Amplo**: Oferece suporte abrangente para diversos tipos de projetos, incluindo aqueles com estrutura de diretórios públicos, utils e views, seguindo o padrão de arquitetura MVC (Model-View-Controller) e projetos Python, permitindo uma adaptação flexível às necessidades específicas de cada projeto.
+- **Broad Support**: Provides comprehensive
 
-- **Feedback Visual**: Fornece mensagens de feedback coloridas durante o processo de criação da estrutura, tornando mais fácil e rápido identificar o sucesso ou falha na criação, permitindo uma experiência mais intuitiva e informativa para o usuário.
+ support for various types of projects, including those with public, utils, and views directory structure, following the Model-View-Controller (MVC) architecture pattern, and Python projects, allowing flexible adaptation to the specific needs of each project.
 
-Essas características combinadas tornam o FileForge uma ferramenta poderosa e conveniente para desenvolvedores, permitindo que eles se concentrem mais no desenvolvimento de software e menos na organização inicial do projeto.
+- **Visual Feedback**: Provides colorful feedback messages during the structure creation process, making it easier and faster to identify success or failure in creation, allowing for a more intuitive and informative user experience.
+
+These combined characteristics make FileForge a powerful and convenient tool for developers, allowing them to focus more on software development and less on the initial organization of the project.
 
 ## Troubleshooting
 
-🛟 Se encontrar problemas ao usar o FileForge, verifique o seguinte:
+🛟 If you encounter issues while using FileForge, check the following:
 
-- **PowerShell**: Certifique-se de ter o PowerShell instalado e configurado corretamente no seu sistema.
-- **Permissões**: Verifique se você tem permissões suficientes para criar diretórios e arquivos no diretório de destino.
-- **Issues**: Se encontrar erros específicos, consulte a seção de [Issues](https://github.com/Gustavo2022003/FileForge/issues) ou abra uma nova Issue para relatar o problema.
+- **PowerShell**: Make sure PowerShell is installed and configured correctly on your system.
+- **Permissions**: Verify that you have sufficient permissions to create directories and files in the target directory.
+- **Issues**: If you encounter specific errors, refer to the [Issues](https://github.com/Gustavo2022003/FileForge/issues) section or open a new Issue to report the problem.
 
-## Possíveis Erros e Soluções
+## Possible Errors and Solutions
 
-Durante o uso do FileForge, você pode encontrar alguns erros comuns. Aqui estão alguns dos problemas mais frequentes e suas soluções correspondentes:
+During the use of FileForge, you may encounter some common errors. Here are some of the most frequent issues and their corresponding solutions:
 
-### 1. Erro de Permissão Negada ao Criar Diretório ou Arquivo
+### 1. Permission Denied Error When Creating Directory or File
 
-**⚠️ Problema**: Você recebe uma mensagem de erro indicando que não tem permissão para criar um diretório ou arquivo no diretório de destino.
+**⚠️ Issue**: You receive an error message indicating that you do not have permission to create a directory or file in the target directory.
 
-**✅ Solução**: Verifique suas permissões de usuário no sistema operacional. Certifique-se de que você tenha permissões de escrita no diretório de destino. Se estiver
+**✅ Solution**: Check your user permissions on the operating system. Ensure you have write permissions in the target directory. If running the script in a security-controlled environment, contact the system administrator for assistance.
 
- executando o script em um ambiente controlado por políticas de segurança, entre em contato com o administrador do sistema para obter assistência.
+### 2. Duplicate Project Name
 
-### 2. Projeto com Nome Duplicado
+**⚠️ Issue**: You attempt to create a project with a name that already exists in the target directory.
 
-**⚠️ Problema**: Você tenta criar um projeto com um nome que já existe no diretório de destino.
+**✅ Solution**: Choose a different name for the project or delete the existing project before attempting to create a new one with the same name. Make sure to check the target directory before creating a new project to avoid name conflicts.
 
-**✅ Solução**: Escolha um nome diferente para o projeto ou exclua o projeto existente antes de tentar criar um novo com o mesmo nome. Certifique-se de verificar o diretório de destino antes de criar um novo projeto para evitar conflitos de nome.
+### 3. Error When Running the Script
 
+**⚠️ Issue**: You receive an error when trying to execute the `FF.ps1` script.
 
-<img src="public/src/Errors/GIF_duplicateProjectError.gif">
+**✅ Solution**: Ensure PowerShell is installed correctly on your system and that you are using the correct command to run the script. Also, make sure you are in the correct directory where the script is located. If the issue persists, check for syntax errors in the script or missing dependencies.
 
-### 3. Erro ao Executar o Script
+### 4. Error When Moving Files
 
-**⚠️ Problema**: Você recebe um erro ao tentar executar o script `FF.ps1`.
+**⚠️ Issue**: The script fails to move some files to their final destinations.
 
-**✅ Solução**: Verifique se o PowerShell está instalado corretamente no seu sistema e se você está usando o comando correto para executar o script. Certifique-se também de estar no diretório correto onde o script está localizado. Se o problema persistir, verifique se há erros de sintaxe no script ou se há dependências ausentes.
+**✅ Solution**: Verify that the target directories are correctly created and that the script has permission to access them. Ensure that file and directory names are correct and that there are no naming conflicts. If necessary, check the write and access permissions on the file system.
 
-### 4. Erro ao Mover Arquivos
+### 5. Environment Configuration Issues
 
-**⚠️ Problema**: O script não consegue mover alguns arquivos para seus destinos finais.
+**⚠️ Issue**: The script does not function as expected due to incorrect environment settings.
 
-**✅ Solução**: Verifique se os diretórios de destino estão corretamente criados e se o script tem permissão para acessá-los. Certifique-se de que os nomes dos arquivos e diretórios estejam corretos e que não haja conflitos de nome. Se necessário, verifique as permissões de escrita e acesso no sistema de arquivos.
+**✅ Solution**: Ensure all necessary environment settings are correctly configured. This may include environment variables, PowerShell settings, user permissions, and other factors that may affect the script's execution. Refer to the FileForge and PowerShell documentation for more information on the required environment settings.
 
-### 5. Problemas de Configuração do Ambiente
+### 6. Duplicate Parameter (flag 🚩)
 
-**⚠️ Problema**: O script não funciona como esperado devido a configurações de ambiente incorretas.
+**⚠️ Issue**: Duplicate parameter is being selected in the script execution
 
-**✅ Solução**: Certifique-se de que todas as configurações de ambiente necessárias estejam corretamente configuradas. Isso pode incluir variáveis de ambiente, configurações do PowerShell, permissões de usuário e outros fatores que podem afetar a execução do script. Consulte a documentação do FileForge e do PowerShell para obter mais informações sobre as configurações de ambiente necessárias.
+**✅ Solution**: Make sure to select only one of the option parameters. You can find these parameters in the [Options ⚙️](#options) section.
 
-### 6. Parâmetro duplicado (flag 🚩)
+### 7. Nonexistent Parameter (flag 🚩)
 
-**⚠️ Problema**: Duplicação de parâmetro na hora da execução do script
+**⚠️ Issue**: Nonexistent parameter is being assigned to a script argument
 
-**✅ Solução**: Certifique-se de selecionar apenas um dos parâmetros de opção. Você pode encontrar esses parâmetros na sessão: [Opções ⚙️](#opções)
+**✅ Solution**: Make sure to select only one of the option parameters. You can find these parameters in the [Options ⚙️](#options) section.
 
-<img src="public/src/Errors/GIF_duplicateFlagError.gif">
+### 8. Undefined Parameter (flag 🚩)
 
-### 7. Parâmetro inexistente (flag 🚩)
+**⚠️ Issue**: No option parameter (flag 🚩) is selected for the project creation
 
-**⚠️ Problema**: Parâmetro inexistente no programa está sendo atribuído em algum argumento
+**✅ Solution**: Make sure to select only one of the option parameters. You can find these parameters in the [Options ⚙️](#options) section.
 
-**✅ Solução**: Certifique-se de selecionar apenas um dos parâmetros de opção. Você pode encontrar esses parâmetros na sessão: [Opções ⚙️](#opções)
+### 9. Undefined Target Directory
 
-<img src="public/src/Errors/GIF_invalidFlagError.gif">
+**⚠️ Issue**: No directory is assigned to the second parameter
 
-### 8. Parâmetro não definido (flag 🚩)
+**✅ Solution**: Make sure to specify the name of the directory where the project will be created: You can find the program structure in the [How to Use 📝](#how-to-use) section
 
-**⚠️ Problema**: Nenhum parâmetro (flag 🚩) foi selecionado para a criação do projeto
+### 10. Undefined Project Name
 
-**✅ Solução**: Certifique-se de selecionar apenas um dos parâmetros de opção. Você pode encontrar esses parâmetros na sessão: [Opções ⚙️](#opções)
+**⚠️ Issue**: The project name is not assigned to the third parameter
 
-<img src="public/src/Errors/GIF_noFlagError.gif">
+**✅ Solution**: Make sure to specify the name of the project: You can find the program structure in the [How to Use 📝](#how-to-use) section
 
-### 9. Diretório alvo não definido
+If you encounter other errors or issues while using FileForge, feel free to report the problem by opening a new Issue on the [project repository](https://github.com/Gustavo2022003/FileForge/issues). We are here to help and resolve any issues you may encounter while using the tool.
 
-**⚠️ Problema**: Nenhum diretório foi atribuído ao segundo parâmetro
+## Contribute and Report Issues
 
-**✅ Solução**: Certifique-se de informar o nome do diretório que será criado o projeto: Você pode encontrar a estrutura do programa na sessão [Como Usar 📝](#como-usar)
+🤝 If you have questions, suggestions for improvements, or encounter bugs, feel free to open a new Issue on the [project repository](https://github.com/Gustavo2022003/FileForge/issues). We are always open to feedback and contributions ❤️
 
-<img src="public/src/Errors/GIF_noPathError.gif">
+## For More Information
 
-### 10. Nome do projeto não definido
-
-**⚠️ Problema**: O nome do projeto não foi atribuído ao terceiro parâmetro
-
-**✅ Solução**: Certifique-se de informar o nome do projeto: Você pode encontrar a estrutura do programa na sessão [Como Usar 📝](#como-usar)
-
-<img src="public/src/Errors/GIF_noProjectNameError.gif">
-
-Se você encontrar outros erros ou problemas ao usar o FileForge, sinta-se à vontade para relatar o problema abrindo uma nova Issue no [repositório do projeto](https://github.com/Gustavo2022003/FileForge/issues). Estamos aqui para ajudar e resolver quaisquer problemas que você possa enfrentar durante o uso da ferramenta.
-
-## Contribua e Reporte Problemas
-
-🤝 Se tiver dúvidas, sugestões de melhorias ou encontrar bugs, sinta-se à vontade para abrir uma nova Issue no [repositório do projeto](https://github.com/Gustavo2022003/FileForge/issues). Estamos sempre abertos a feedback e contribuições ❤️
-
-## Para mais informações
-
-Visite o [repositório do projeto](https://github.com/Gustavo2022003/FileForge) para mais detalhes e atualizações.
+Visit the [project repository](https://github.com/Gustavo2022003/FileForge) for more details and updates.
