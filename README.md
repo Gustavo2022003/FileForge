@@ -1,4 +1,4 @@
-# FileForge 🛠️
+# <img src="public/src/imgs/png/Logo-written-text-white.png">
 
 O FileForge é uma ferramenta de linha de comando projetada para simplificar e agilizar o processo de criação de estruturas de diretórios e arquivos para projetos de desenvolvimento de software. Com este programa, os desenvolvedores podem facilmente gerar estruturas de pastas e arquivos para uma variedade de tipos de projetos, incluindo aqueles que seguem padrões específicos, como arquitetura MVC (Model-View-Controller) ou projetos Python. Oferecendo suporte amplo e feedback visual claro, o FileForge é uma solução conveniente para configurar rapidamente a base de um projeto, permitindo que os desenvolvedores se concentrem mais no desenvolvimento de software e menos na organização inicial do projeto.
 
