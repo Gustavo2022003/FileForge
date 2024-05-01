@@ -189,7 +189,7 @@ Durante o uso do FileForge, você pode encontrar alguns erros comuns. Aqui estã
 
 ### 9. Diretório alvo não definido
 
-**⚠️ Problema**: Nenhum diretório foi atribuído ao segundo argumento
+**⚠️ Problema**: Nenhum diretório foi atribuído ao primeiro argumento
 
 **✅ Solução**: Certifique-se de informar o nome do diretório que será criado o projeto: Você pode encontrar a estrutura do programa na sessão [Como Usar 📝](#como-usar)
 
@@ -197,7 +197,7 @@ Durante o uso do FileForge, você pode encontrar alguns erros comuns. Aqui estã
 
 ### 10. Nome do projeto não definido
 
-**⚠️ Problema**: O nome do projeto não foi atribuído ao terceiro argumento
+**⚠️ Problema**: O nome do projeto não foi atribuído ao segundo argumento
 
 **✅ Solução**: Certifique-se de informar o nome do projeto: Você pode encontrar a estrutura do programa na sessão [Como Usar 📝](#como-usar)
 
