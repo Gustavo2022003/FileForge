@@ -64,13 +64,13 @@ Para melhorar a seção "Como Usar", podemos adicionar mais detalhes sobre cada 
 📝 Para utilizar o projeto, execute o script `FF.ps1` no PowerShell com os seguintes parâmetros:
 
 ```
-.\FF.ps1 <diretório_de_destino> <nome_do_projeto> [-puv] [-mvc] [-py] [-help]
+.\FF.ps1 <diretório_de_destino> <nome_do_projeto> [-puv] [-mvc] [-py] [-jupyter] [-help]
 ```
 
 Você também pode especificar as opções como uma string delimitada por aspas:
 
 ```
-.\FF.ps1 <diretório_de_destino> <nome_do_projeto> ["-puv"] ["-mvc"] ["-py"] ["-help"]
+.\FF.ps1 <diretório_de_destino> <nome_do_projeto> ["-puv"] ["-mvc"] ["-py"] [-jupyter] ["-help"]
 ```
 
 <img src="public/src/simple/GIF_flagAsString.gif">
@@ -82,8 +82,9 @@ Você também pode especificar as opções como uma string delimitada por aspas:
 | Opção  | Descrição                                                                                                            |
 |--------|----------------------------------------------------------------------------------------------------------------------|
 | `-puv` | Cria a estrutura de diretórios e arquivos para um projeto com a estrutura de diretórios públicos, utils e views.     |
-| `-mvc` | Cria a estrutura de diretórios e arquivos para um projeto seguindo o padrão de arquitetura MVC (Model-View-Controller). |
+| `-mvc` | Cria a estrutura de diretórios e arquivos para um projeto seguindo o padrão de arquitetura MVC (Model-View-Controller).|
 | `-py`  | Cria a estrutura de diretórios e arquivos para um projeto Python.                                                     |
+| `-jupyter`| Cria uma estrutura de diretórios e arquivos para um projeto Python com JupyterLab                                  |
 | `-help`| Exibe a mensagem de ajuda com informações sobre como usar o script.                                                   |
 
 Certifique-se de escolher a opção adequada para o tipo de projeto que você está iniciando. Por exemplo:
@@ -101,6 +102,7 @@ O FileForge oferece suporte a diferentes tipos de estruturas de diretórios e ar
 - **PUV**: Estrutura com diretórios: public, utils e views.
 - **MVC**: Estrutura seguindo o padrão de arquitetura MVC (Model-View-Controller).
 - **Python**: Estrutura para projetos Python.
+- **Jupyter**: Estrutura para projetos Python com o Jupyter Lab.
 
 Claro, aqui está uma versão aprimorada da seção "Features":
 
