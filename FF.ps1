@@ -1,11 +1,12 @@
 # Constantes
 $HelpMessage = @"
-Usage: script.ps1 <target_directory> <project_name> [-puv] [-mvc] [-py] [-help]
+Usage: script.ps1 <target_directory> <project_name> [-puv] [-mvc] [-py] [-jupyter] [-help]
 
 Options:
     -puv    Create public utils and views structure
     -mvc    Create MVC project structure
     -py     Create Python project structure
+    -jupyter    Create Jupyter project structure
     -help   Show this help message
 
 For more information visit: https://github.com/Gustavo2022003/FileForge
@@ -25,7 +26,8 @@ function CreateStructure {
         [bool]$IsPublicUtilsViews = $false,
         [bool]$IsMVC = $false,
         [bool]$IsPy = $false,
-        [bool]$IsHelp = $false
+        [bool]$IsHelp = $false,
+        [bool]$IsJupyter = $false
     )
 
     # Verificação de ajuda
@@ -69,6 +71,12 @@ function CreateStructure {
     $directories = @()
     $files = @()
 
+    if ($IsJupyter) {
+        $directories += "notebooks", "data", "scripts"
+        $files += "README.md", "requirements.txt", "setup.py", ".gitignore"
+        $venvName = Read-Host "Enter the name of the virtual environment: "
+    }
+
     if ($IsPublicUtilsViews) {
         $directories += "public", "public\icons", "public\imgs", "public\scripts", "public\scripts\utils", "views", "views\partials"
         $files += ".env", ".gitignore", "index.js", "utils.js", "index.ejs"
@@ -94,6 +102,15 @@ function CreateStructure {
     CreateDirectories -BaseDirectory (Join-Path -Path $Directory -ChildPath $ProjectName) -Directories $directories
     CreateFiles -BaseDirectory (Join-Path -Path $Directory -ChildPath $ProjectName) -Files $files
 
+    # Criação do ambiente virtual e ativação para Jupyter
+    if ($IsJupyter) {
+        Set-Location "$Directory\$ProjectName"
+        python -m venv $venvName
+        Invoke-Expression ".\$venvName\Scripts\Activate"
+        Write-Host "The virtual environment has been successfully created and activated.`n" -ForegroundColor Green
+        ##pip install jupyterlab
+    }
+
     # Mover util.js para public/scripts/utils
     if ($IsPublicUtilsViews) {
         Move-Item -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "utils.js") -Destination (Join-Path -Path (Join-Path -Path (Join-Path -Path $Directory -ChildPath $ProjectName) -ChildPath "public") -ChildPath "scripts\utils\utils.js")
@@ -105,18 +122,19 @@ function CreateStructure {
     Write-Host "The file structure has been successfully created at $Directory\$ProjectName.`n" -ForegroundColor Green
 }
 
-
 $targetDirectory = $args[0]
 $projectName = $args[1]
 $isPublicUtilsViews = $args -contains "-puv"
 $isMVC = $args -contains "-mvc"
 $isPy = $args -contains "-py"
 $isHelp = $args -contains "-help"
+$isjupyter = $args -contains "-jupyter"
 
 # Verifica se pelo menos um argumento válido foi passado
-if (-not ($isMVC -or $isPublicUtilsViews -or $isPy -or $isHelp)) {
+if (-not ($isMVC -or $isPublicUtilsViews -or $isPy -or $isHelp -or $isJupyter)) {
     $invalid_arg = $args[2]
-    Write-Host "`nYou must specify at least one of the following options: -puv, -mvc or -py.`n" -ForegroundColor Red
+    Write-Host "`nInvalid argument: $invalid_arg`n" -ForegroundColor Red
+    Write-Host "`nYou must specify at least one of the following options: -puv, -mvc, -py, -jupyter or -help.`n" -ForegroundColor Red
     ShowHelp
     exit 1
 }
@@ -128,4 +146,4 @@ if($args.Count -ge 4 -and $isHelp -eq $false) {
 }
 
 # Criação da estrutura de diretórios e arquivos
-CreateStructure -Directory $targetDirectory -ProjectName $projectName -IsPublicUtilsViews $isPublicUtilsViews -IsMVC $isMVC -IsPy $isPy -IsHelp $isHelp
+CreateStructure -Directory $targetDirectory -ProjectName $projectName -IsPublicUtilsViews $isPublicUtilsViews -IsMVC $isMVC -IsPy $isPy -IsHelp $isHelp -IsJupyter $isJupyter
