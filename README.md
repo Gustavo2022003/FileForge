@@ -143,6 +143,8 @@ While using FileForge, you may encounter some common errors. Here are some of th
 
 **✅ Solution**: Choose a different name for the project or delete the existing project before attempting to create a new one with the same name. Make sure to check the target directory before creating a new project to avoid name conflicts.
 
+<img src="public/src/Errors/GIF_duplicateProjectError.gif">
+
 ### 3. Error When Running the Script
 
 **⚠️ Problem**: You receive an error when trying to execute the `FF.ps1` script.
@@ -167,11 +169,15 @@ While using FileForge, you may encounter some common errors. Here are some of th
 
 **✅ Solution**: Make sure to select only one of the option parameters. You can find these parameters in the [Options ⚙️](#options) section.
 
+<img src="public/src/Errors/GIF_duplicateFlagError.gif">
+
 ### 7. Nonexistent Parameter (Flag 🚩)
 
 **⚠️ Problem**: Nonexistent parameter is being assigned in some argument.
 
 **✅ Solution**: Make sure to select only one of the option parameters. You can find these parameters in the [Options ⚙️](#options) section.
+
+<img src="public/src/Errors/GIF_invalidFlagError.gif">
 
 ### 8. Undefined Parameter (Flag 🚩)
 
@@ -179,11 +185,15 @@ While using FileForge, you may encounter some common errors. Here are some of th
 
 **✅ Solution**: Make sure to select only one of the option parameters. You can find these parameters in the [Options ⚙️](#options) section.
 
+<img src="public/src/Errors/GIF_noFlagError.gif">
+
 ### 9. Undefined Target Directory
 
 **⚠️ Problem**: No directory was assigned to the first argument.
 
 **✅ Solution**: Make sure to specify the directory name where the project will be created. You can find the program structure in the [How to Use 📝](#how-to-use) section.
+
+<img src="public/src/Errors/GIF_noPathError.gif">
 
 ### 10. Undefined Project Name
 
@@ -191,7 +201,10 @@ While using FileForge, you may encounter some common errors. Here are some of th
 
 **✅ Solution**: Make sure to specify the project name. You can find the program structure in the [How to Use 📝](#how-to-use) section.
 
-If you encounter other errors or issues when using FileForge, feel free to report the problem by opening a new Issue in the [project repository](https://github.com/Gustavo2022003/FileForge/issues). We're here to help and resolve any issues you may face while using the tool.
+<img src="public/src/Errors/GIF_noProjectNameError.gif">
+
+If you encounter other errors or issues when using FileForge, feel free to report the problem by opening a new Issue in the [project repository](https://github.com/Gustavo2022003/FileForge/issues). We're here to help and resolve any issues you may face while using the 
+tool.
 
 ## Contribute and Report Issues
 
