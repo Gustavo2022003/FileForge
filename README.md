@@ -101,7 +101,7 @@ FileForge supports different types of directory and file structures, including:
 - **PUV**: Structure with directories: public, utils, and views.
 - **MVC**: Structure following the MVC (Model-View-Controller) architecture pattern.
 - **Python**: Structure for Python projects.
-- **Jupyter**: Structure for Python projects with J
+- **Jupyter**: Structure for Python projects with Jupyter Lab.
 
 upyterLab.
 
